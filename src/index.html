@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POS QR Code</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        #qrCode {
+            margin: 20px auto;
+        }
+        #status {
+            font-size: 1.5em;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>POS QR Code</h1>
+    <canvas id="qrCode"></canvas> <!-- Ensure this element is present -->
+    <div id="status">Waiting for approval...</div>
+
+    <script src="dist/bundle.js"></script> <!-- Ensure the correct path to your script -->
+</body>
+</html>
