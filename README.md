@@ -1,4 +1,4 @@
-# Phycathon-2024-Car-Parking
+# Phycathon 2024 Car Parking
 
 ## QR Code Status Update Server
 This is a Node.js application that utilizes Express.js to create a RESTful API and WebSockets to establish real-time communication between the server and clients. The application serves static files from the dist directory and provides an endpoint to update the status of QR codes.
