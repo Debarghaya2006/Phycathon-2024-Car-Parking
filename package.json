@@ -1,5 +1,5 @@
 {
-    "scripts": {
+  "scripts": {
     "build": "npx webpack",
     "start": "node server.js",
     "dev": "npm run build && npm run start"
