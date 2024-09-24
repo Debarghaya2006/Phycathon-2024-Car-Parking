@@ -1,0 +1,23 @@
+Arduino to Breadboard
+5v>positive Rail
+GND>negative rail
+
+
+
+IR Sensor to Breadboard and Arduino
+Gnd> negative rail
+VCC>positive rail
+out>D2
+
+
+
+Servo to arduino and breadboard
+Gnd>Negative rail
+VCC>Positive rail
+Signal>D4
+
+
+IR Sensor to Breadboard and Arduino
+Gnd> negative rail
+VCC>positive rail
+out>D3

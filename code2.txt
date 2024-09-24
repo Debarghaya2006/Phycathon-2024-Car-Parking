@@ -1,0 +1,80 @@
+// Created by Simple Circuits 
+
+#include <Servo.h> 
+
+Servo myservo;
+
+int IR1 = 2;
+int IR2 = 3;
+
+int Slot = 4;           // Total number of parking slots
+
+int flag1 = 0;
+int flag2 = 0;
+
+int motionThreshold = 3;  // Number of consistent detections required for motion
+
+void setup() {
+  Serial.begin(9600); 
+  
+  pinMode(IR1, INPUT);
+  pinMode(IR2, INPUT);
+  
+  myservo.attach(4);
+  myservo.write(100);  // Initial position of the servo (gate closed)
+
+  Serial.println("ARDUINO PARKING SYSTEM");
+}
+
+// Function to check consistent motion detection
+bool isMotionDetected(int sensorPin) {
+  int count = 0;
+  for (int i = 0; i < 5; i++) {  // Check 5 times for a consistent signal
+    if (digitalRead(sensorPin) == LOW) {
+      count++;
+    }
+    delay(10);  // Short delay between checks
+  }
+  return count >= motionThreshold;  // Return true if motion is detected consistently
+}
+
+void loop(){ 
+  // Car entering detection
+  if (isMotionDetected(IR1) && flag1 == 0 && Slot > 0) {
+    flag1 = 1;                      // Set the flag so this block is not retriggered
+    myservo.write(0);               // Open the gate
+    Serial.println("Car detected at entrance. Gate opening...");
+    delay(1000);                    // Give the car enough time to pass through
+    Slot--;                         // Decrease the slot count
+    Serial.println("Gate closing...");
+    myservo.write(100);             // Close the gate after car passes
+  } else if (Slot <= 0 && isMotionDetected(IR1)) {
+    Serial.println("SORRY :( Parking Full");
+    delay(1000);                    // Delay to avoid flooding with messages
+  }
+
+  // Car exiting detection
+  if (isMotionDetected(IR2) && flag2 == 0) {
+    flag2 = 1;                      // Set the flag so this block is not retriggered
+    myservo.write(0);               // Open the gate for exiting car
+    Serial.println("Car detected at exit. Gate opening...");
+    delay(1000);                    // Give the car enough time to exit
+    Slot++;                         // Increase the slot count
+    Serial.println("Gate closing...");
+    myservo.write(100);             // Close the gate after car passes
+  }
+
+  // Reset the flags only when no car is detected
+  if (!isMotionDetected(IR1)) {
+    flag1 = 0;  // Reset flag1 only when no car is detected at the entrance
+  }
+  
+  if (!isMotionDetected(IR2)) {
+    flag2 = 0;  // Reset flag2 only when no car is detected at the exit
+  }
+
+  // Display slot count on the serial monitor
+  Serial.print("Slots Left: ");
+  Serial.println(Slot);
+  delay(500);  // Add a small delay to avoid serial flooding
+}
