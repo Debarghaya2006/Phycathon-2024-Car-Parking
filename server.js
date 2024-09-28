@@ -56,7 +56,7 @@ app.post('/updateStatus', (req, res) => {
     }
   });
   if (status === 'approved') {
-    childProcess.exec('python ./script.py', (error, stdout, stderr) => {
+    childProcess.exec('python script.py', (error, stdout, stderr) => {
       if (error) {
         console.error(`Error executing Python script: ${error}`);
       } else {
