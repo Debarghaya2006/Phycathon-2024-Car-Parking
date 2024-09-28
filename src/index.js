@@ -31,12 +31,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function generateQRCode() {
         currentCode = generateRandomString(10);
-        const approvalPageURL = `http://192.168.29.201:3000/approval.html?code=${currentCode}`;
+        const approvalPageURL = `http://raspberrypi.local:3000/approval.html?code=${currentCode}`;
         qr.value = approvalPageURL;
     }
 
     // Establish a WebSocket connection
-    const ws = new WebSocket('ws://192.168.29.201:8081');
+    const ws = new WebSocket('ws://raspberrypi.local:8081');
 
     // Handle WebSocket connection establishment
     ws.onopen = () => {

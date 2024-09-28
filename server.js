@@ -2,13 +2,14 @@ const express = require('express');
 const WebSocket = require('ws');
 const cors = require('cors');
 const path = require('path');
+const childProcess = require('child_process');
 
 const app = express();
 const port = 3000;
 
 // CORS middleware configuration
 app.use(cors({
-  origin: 'http://192.168.29.201:8080' // Allow the POS screen's origin
+  origin: 'http://raspberrypi.local:8080' // Allow the POS screen's origin
 }));
 
 // Serve static files from 'dist' directory
@@ -54,7 +55,15 @@ app.post('/updateStatus', (req, res) => {
       client.send(JSON.stringify({ code, status }));
     }
   });
-
+  if (status === 'approved') {
+    childProcess.exec('python ./script.py', (error, stdout, stderr) => {
+      if (error) {
+        console.error(`Error executing Python script: ${error}`);
+      } else {
+        console.log('Command sent to Arduino successfully');
+      }
+    });
+  }
   res.json({ message: 'Status updated successfully' });
 });
 
