@@ -55,13 +55,15 @@ app.post('/updateStatus', (req, res) => {
       client.send(JSON.stringify({ code, status }));
     }
   });
-  childProcess.exec('python /path/to/send_command_to_arduino.py', (error, stdout, stderr) => {
-    if (error) {
-      console.error(`Error executing Python script: ${error}`);
-    } else {
-      console.log('Command sent to Arduino successfully');
-    }
-  });
+  if (status === 'approved') {
+    childProcess.exec('python /path/to/send_command_to_arduino.py', (error, stdout, stderr) => {
+      if (error) {
+        console.error(`Error executing Python script: ${error}`);
+      } else {
+        console.log('Command sent to Arduino successfully');
+      }
+    });
+  }
   res.json({ message: 'Status updated successfully' });
 });
 
