@@ -1,5 +1,9 @@
 // Created by Simple Circuits 
+#include <Wire.h> 
 
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x27,16,2);   
 #include <Servo.h> 
 
 Servo myservo;
@@ -18,11 +22,25 @@ void setup() {
   pinMode(rpiSignalPin, INPUT);
   pinMode(IR1, INPUT);
   pinMode(IR2, INPUT);
+  lcd.init(); //initialize the lcd
+
+  lcd.backlight(); //open the backlight
   
   myservo.attach(4);
   myservo.write(100);  // Initial position of the servo (gate closed)
 
   Serial.println("ARDUINO PARKING SYSTEM");
+  lcd.setCursor (0,0);
+
+lcd.print("     ARDUINO    ");
+
+lcd.setCursor (0,1);
+
+lcd.print(" PARKING SYSTEM ");
+
+delay (2000);
+
+lcd.clear();  
 }
 
 void loop(){ 
@@ -34,8 +52,17 @@ void loop(){
     delay(1000);       // Give the car enough time to pass through (5 seconds)
     Slot--;            // Decrease the slot count
   } else if (Slot <= 0 && digitalRead(IR1) == LOW) {
-    Serial.println("SORRY :( Parking Full");
+    Serial.println("SORRY :( Parking Full");lcd.setCursor (0,0);
+
+lcd.print("    SORRY :(    ");  
+
+lcd.setCursor (0,1);
+
+lcd.print("  Parking Full  "); 
+
+
     delay(1000);       // Delay to avoid flooding with messages
+  lcd.clear();
   }
 
   // Car exiting detection
@@ -43,7 +70,7 @@ void loop(){
     flag2 = 1;
     myservo.write(0);  // Open the gate for exiting car
     Serial.println("Car detected at exit. Gate opening...");
-    delay(500);       // Give the car enough time to exit (5 seconds)
+    delay(2000);       // Give the car enough time to exit (5 seconds)
     Slot++;            // Increase the slot count only if there are cars in the lot
   }
 
@@ -63,4 +90,13 @@ void loop(){
   Serial.print("Slots Left: ");
   Serial.println(Slot);
   delay(500);  // Add a small delay to avoid serial flooding
+  lcd.setCursor (0,0);
+
+lcd.print("    WELCOME!    ");
+
+lcd.setCursor (0,1);
+
+lcd.print("Slot Left: ");
+
+lcd.print(Slot);
 }
