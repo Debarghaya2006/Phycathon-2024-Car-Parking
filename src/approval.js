@@ -23,7 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (data.status === 'approved') {
                 document.body.innerHTML = `<h2>Payment for code ${code} is approved</h2>`;
             } else if (data.status === 'denied') {
-                document.body.innerHTML = `<h2>Payment for code ${code} is denied</h2>`;
+                document.body.innerHTML = `<h2>Payment for code ${code} is denied</h2>
+                Thank You for using Autopark Systems<br>
+                Wish You a safe journey ahead`;
             }
         }
     };
