@@ -11,10 +11,11 @@ int Slot = 4;           // Total number of parking slots
 
 int flag1 = 0;
 int flag2 = 0;
+const int rpiSignalPin = 5;
 
 void setup() {
   Serial.begin(9600); 
-  
+  pinMode(rpiSignalPin, INPUT);
   pinMode(IR1, INPUT);
   pinMode(IR2, INPUT);
   
@@ -38,7 +39,7 @@ void loop(){
   }
 
   // Car exiting detection
-  if (digitalRead(IR2) == LOW && flag2 == 0 && Slot >= 0 && Slot < 4) {
+  if (digitalRead(IR2) == LOW && flag2 == 0 && Slot >= 0 && Slot < 4 && digitalRead(rpiSignalPin) == HIGH) {
     flag2 = 1;
     myservo.write(0);  // Open the gate for exiting car
     Serial.println("Car detected at exit. Gate opening...");
