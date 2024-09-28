@@ -11,7 +11,7 @@ int Slot = 4;           // Total number of parking slots
 
 int flag1 = 0;
 int flag2 = 0;
-const int rpiSignalPin = 5;
+const int rpiSignalPin = 6;
 
 void setup() {
   Serial.begin(9600); 
