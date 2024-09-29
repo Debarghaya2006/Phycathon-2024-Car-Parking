@@ -21,3 +21,7 @@ IR Sensor to Breadboard and Arduino
 Gnd> negative rail
 VCC>positive rail
 out>D3
+
+
+GPIO 17 > D6
+GND > -ve

@@ -31,10 +31,8 @@ void setup() {
 
   Serial.println("ARDUINO PARKING SYSTEM");
   lcd.setCursor (0,0);
-
-lcd.print("     ARDUINO    ");
-
-lcd.setCursor (0,1);
+  lcd.print("     ARDUINO    ");
+  lcd.setCursor (0,1);
 
 lcd.print(" PARKING SYSTEM ");
 

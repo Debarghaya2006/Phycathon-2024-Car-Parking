@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Establish a WebSocket connection
-    const ws = new WebSocket('ws://raspberrypi.local:8081');
+    const ws = new WebSocket('ws://localhost:8081');
 
     // Handle WebSocket connection establishment
     ws.onopen = () => {
@@ -21,11 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = JSON.parse(event.data);
         if (data.code === code) {
             if (data.status === 'approved') {
-                document.body.innerHTML = `<h2>Payment for code ${code} is approved</h2>`;
-            } else if (data.status === 'denied') {
-                document.body.innerHTML = `<h2>Payment for code ${code} is denied</h2>
+                document.body.innerHTML = `<h2>Payment for code ${code} is approved</h2>
                 Thank You for using Autopark Systems<br>
                 Wish You a safe journey ahead`;
+            } else if (data.status === 'denied') {
+                document.body.innerHTML = `<h2>Payment for code ${code} is denied</h2>`;
             }
         }
     };
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                <button id="deny" class="btn btn-deny">Payment Denied</button>`;
 
     document.getElementById('approve').addEventListener('click', () => {
-        fetch('http://raspberrypi.local:3000/updateStatus', {
+        fetch('http://localhost:3000/updateStatus', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ code, status: 'approved' })
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('deny').addEventListener('click', () => {
-        fetch('http://raspberrypi.local:3000/updateStatus', {
+        fetch('http://localhost:3000/updateStatus', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ code, status: 'denied' })

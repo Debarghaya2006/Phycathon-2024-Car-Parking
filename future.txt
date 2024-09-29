@@ -1,0 +1,8 @@
+1. Camera set up for individual car logging
+2. Implementation for BC and fasttags
+3. Monitoring implemenatation
+4. USer notifocation for time elapsed (Corporate)
+5. Implementation TPU based computer vision for prevention of car theft
+
+
+add Harshita Jha name
