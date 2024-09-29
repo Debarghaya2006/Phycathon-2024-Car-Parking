@@ -1,8 +1,6 @@
 // Created by Simple Circuits 
 #include <Wire.h> 
-
 #include <LiquidCrystal_I2C.h>
-
 LiquidCrystal_I2C lcd(0x27,16,2);   
 #include <Servo.h> 
 
@@ -33,12 +31,9 @@ void setup() {
   lcd.setCursor (0,0);
   lcd.print("     ARDUINO    ");
   lcd.setCursor (0,1);
-
-lcd.print(" PARKING SYSTEM ");
-
-delay (2000);
-
-lcd.clear();  
+  lcd.print(" PARKING SYSTEM ");
+  delay (2000);
+  lcd.clear();  
 }
 
 void loop(){ 
@@ -49,18 +44,14 @@ void loop(){
     Serial.println("Car detected at entrance. Gate opening...");
     delay(1000);       // Give the car enough time to pass through (5 seconds)
     Slot--;            // Decrease the slot count
-  } else if (Slot <= 0 && digitalRead(IR1) == LOW) {
+  } 
+  else if (Slot <= 0 && digitalRead(IR1) == LOW) {
     Serial.println("SORRY :( Parking Full");lcd.setCursor (0,0);
-
-lcd.print("    SORRY :(    ");  
-
-lcd.setCursor (0,1);
-
-lcd.print("  Parking Full  "); 
-
-
+    lcd.print("    SORRY :(    ");  
+    lcd.setCursor (0,1);
+    lcd.print("  Parking Full  "); 
     delay(1000);       // Delay to avoid flooding with messages
-  lcd.clear();
+    lcd.clear();
   }
 
   // Car exiting detection
@@ -89,12 +80,8 @@ lcd.print("  Parking Full  ");
   Serial.println(Slot);
   delay(500);  // Add a small delay to avoid serial flooding
   lcd.setCursor (0,0);
-
-lcd.print("    WELCOME!    ");
-
-lcd.setCursor (0,1);
-
-lcd.print("Slot Left: ");
-
-lcd.print(Slot);
+  lcd.print("    WELCOME!    ");
+  lcd.setCursor (0,1);
+  lcd.print("Slot Left: ");
+  lcd.print(Slot);
 }
