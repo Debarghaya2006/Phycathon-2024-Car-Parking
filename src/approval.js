@@ -38,9 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Display the code for approval
-    document.body.innerHTML = `<h1>Approve Code: ${code}</h1>
-                               <button id="approve">Approve</button>
-                               <button id="deny">Deny</button>`;
+    document.body.innerHTML = `<h1>Your Payment Code: ${code}</h1>
+                               <button id="approve">Payment Approved</button>
+                               <button id="deny">Payment Denied</button>`;
 
     document.getElementById('approve').addEventListener('click', () => {
         fetch('http://raspberrypi.local:3000/updateStatus', {
