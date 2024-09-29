@@ -1,4 +1,5 @@
 import QRious from 'qrious';
+import "./index.css"
 
 // Ensure the script runs after the DOM has loaded
 document.addEventListener('DOMContentLoaded', () => {

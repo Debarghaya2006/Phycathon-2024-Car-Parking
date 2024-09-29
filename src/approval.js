@@ -1,3 +1,4 @@
+import "./approval.css"
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
@@ -20,9 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = JSON.parse(event.data);
         if (data.code === code) {
             if (data.status === 'approved') {
-                document.body.innerHTML = `Approved: ${code}`;
+                document.body.innerHTML = `<h2>Payment for code ${code} is approved</h2>`;
             } else if (data.status === 'denied') {
-                document.body.innerHTML = `Denied: ${code}`;
+                document.body.innerHTML = `<h2>Payment for code ${code} is denied</h2>`;
             }
         }
     };
@@ -39,8 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Display the code for approval
     document.body.innerHTML = `<h1>Your Payment Code: ${code}</h1>
-                               <button id="approve">Payment Approved</button>
-                               <button id="deny">Payment Denied</button>`;
+                               <button id="approve" class="btn btn-approve">Payment Approved</button>
+                               <button id="deny" class="btn btn-deny">Payment Denied</button>`;
 
     document.getElementById('approve').addEventListener('click', () => {
         fetch('http://raspberrypi.local:3000/updateStatus', {

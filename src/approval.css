@@ -1,0 +1,46 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 20px;
+}
+
+.btn {
+    appearance: none;
+      -webkit-appearance: none;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+    padding: 12px;
+    min-width: 100px;
+    border: 0px;
+      -webkit-transition: background-color 100ms linear;
+      -ms-transition: background-color 100ms linear;
+       transition: background-color 100ms linear;
+}
+  
+.btn:focus, .btn.focus {
+    outline: 0;
+}
+
+.btn-approve {
+    background: #2ecc71;
+    color: #ffffff;
+    border-radius: 20px;
+}
+  
+.btn-approve:hover {
+    background: #27ae60;
+    color: #ffffff;
+    border-radius: 20px;
+}
+
+.btn-deny {
+    background: #e74c3c;
+    color: #ffffff;
+    border-radius: 20px;
+}
+  
+.btn-deny:hover {
+    background: #c0392b;
+    color: #ffffff; 
+    border-radius: 20px;
+}

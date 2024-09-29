@@ -1,0 +1,12 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 20px;
+}
+#qrCode {
+    margin: 20px auto;
+}
+#status {
+    font-size: 1.5em;
+    color: green;
+}
