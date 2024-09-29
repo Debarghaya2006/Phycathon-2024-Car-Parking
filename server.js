@@ -9,7 +9,7 @@ const port = 3000;
 
 // CORS middleware configuration
 app.use(cors({
-  origin: 'http://localhost:8080' // Allow the POS screen's origin
+  origin: 'http://raspberrypi.local:8080' // Allow the POS screen's origin
 }));
 
 // Serve static files from 'dist' directory

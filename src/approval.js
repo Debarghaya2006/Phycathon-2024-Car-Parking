@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Establish a WebSocket connection
-    const ws = new WebSocket('ws://localhost:8081');
+    const ws = new WebSocket('ws://raspberrypi.local:8081');
 
     // Handle WebSocket connection establishment
     ws.onopen = () => {
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                <button id="deny" class="btn btn-deny">Payment Denied</button>`;
 
     document.getElementById('approve').addEventListener('click', () => {
-        fetch('http://localhost:3000/updateStatus', {
+        fetch('http://raspberrypi.local:3000/updateStatus', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ code, status: 'approved' })
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('deny').addEventListener('click', () => {
-        fetch('http://localhost:3000/updateStatus', {
+        fetch('http://raspberrypi.local:3000/updateStatus', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ code, status: 'denied' })
